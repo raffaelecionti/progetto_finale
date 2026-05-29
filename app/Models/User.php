@@ -17,6 +17,12 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
+protected $fillable = [
+    'name',
+    'email',
+    'password',
+];
+
 public function articles() : HasMany
 {
     return $this->hasMany(Article::class);
