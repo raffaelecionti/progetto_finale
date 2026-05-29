@@ -12,8 +12,12 @@
               <form method="POST" action="{{route('register')}}" class="bg-secondary-subtle shadow rounded p-5">
                 @csrf
                 <div class="mb-3">
-                 <label for="loginEmail" class="form-label">Email</label>
-                 <input type="email" class="form-control" id="loginEmail" name="email">
+                 <label for="name" class="form-label">Nome</label>
+                 <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                 <label for="registerEmail" class="form-label">Email</label>
+                 <input type="email" class="form-control" id="registerEmail" name="email">
                 </div>
                 <div class="mb-3">
                  <label for="password" class="form-label">Password</label>
@@ -31,3 +35,4 @@
         </div>
     </div>
  </x-layout>
+
