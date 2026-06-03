@@ -49,7 +49,7 @@
       <li>
         <a class="dropdown-item " href="{{ route('byCategory', ['category' => $category->id]) }}">{{ $category->name }}</a>
       </li>
-      @if (!loop->last)
+      @if (!$loop->last)
       <hr class="dropdown-divider">
       @endif
       @endforeach

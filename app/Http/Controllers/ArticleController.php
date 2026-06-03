@@ -37,7 +37,8 @@ public static function middleware()
 
     public function byCategory(Category $category)
     {
-        return view('article.byCategory', compact('category'));
+        $articles = $category->articles;
+        return view('article.byCategory', compact('category', 'articles'));
     }
 
 }
