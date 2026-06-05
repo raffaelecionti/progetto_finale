@@ -19,6 +19,17 @@
          </a>
          <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="{{ route('create.article') }}">Crea</a></li>
+          @auth
+      @if (Auth::user()->is_revisor)
+      <li class="nav-item">
+        <a class="nav-link btn btn-outline-success btn-sm position-relative w-sm-25" href="{{route('revisor.index')}}">Zona Revisore
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ App\Models\Article::toBeRevisedCount() }}
+          </span>
+        </a>
+      </li>
+      @endif
+      @endauth
           <li class="dropdown-item"><a href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</a>
           </li>
           <form id="form-logout" action="{{ route('logout') }}" method="POST" class="d-none" id="form-logout">
@@ -53,17 +64,7 @@
       <hr class="dropdown-divider">
       @endif
       @endforeach
-      @auth
-      @if (Auth::user()->is_revisor)
-      <li class="nav-item">
-        <a class="nav-link btn btn-outline-success btn-sm position-relative w-sm-25" href="{{route('revisor.index')}}">Zona Revisore
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            {{ App\Models\Article::toBeRevisedCount() }}
-          </span>
-        </a>
-      </li>
-      @endif
-      @endauth
+      
      </ul>
     </li>
   </div>
