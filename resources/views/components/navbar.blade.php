@@ -75,6 +75,9 @@
         </button>
       </div>
     </form>
+    <x-_locale lang="it"/>
+    <x-_locale lang="uk"/>
+    <x-_locale lang="es"/>
   </div>
 </nav>
 
