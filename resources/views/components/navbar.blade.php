@@ -39,8 +39,8 @@
         </li>
         @else 
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ciao,utente
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{{route('article.index')}}">{{__('ui.hello,utente')}}
+            
           </a>
           <ul class="dropdown-menu">
            <li class="dropdown-item"><a href="{{ route('login') }}">Accedi</a></li>
@@ -52,8 +52,8 @@
       </ul>
     </div>
     <li class="nav-item dropdown">
-     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Categorie
+     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" href="{{route('article.index')}}">{{__('ui.categories')}}
+      
      </a>
      <ul class="dropdown-menu">
       @foreach ($categories as $category)
@@ -71,7 +71,7 @@
       <div class="input-group">
         <input type="search" name="query" class="form-control" placeholder="search" aria-label="search">
         <button type="submit" class="input-group-text btn btn-outline-success" id="basic-addon2">
-          Search
+          {{__('ui.search')}}
         </button>
       </div>
     </form>

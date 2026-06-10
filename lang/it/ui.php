@@ -6,6 +6,6 @@ return
     'hello,utente' => 'ciao,utente',
     'categories' => 'categorie',
     'search' => 'cerca',
-    'Do you want to become an revisor?' => 'vuoi diventare revisore',
-    'By clicking the button below you will send a request to our admin' => 'cliccando il bottone sottostante farai richiesta al nostro admin',
+    'DoYouWantToBecomeArevisor' => 'vuoi diventare revisore',
+    'ByClickingTheButtonBelowYouWillSendArequestToOurAdmin' => 'cliccando il bottone sottostante farai richiesta al nostro admin',
 ];
