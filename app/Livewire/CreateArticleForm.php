@@ -6,9 +6,15 @@ use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateArticleForm extends Component
 {
+    use WithFileUploads;
+
+    public $images = [];
+    public $temporary_images;
+
 
 #[Validate('required|min:5')]
 public $title;
@@ -41,6 +47,7 @@ protected function cleanForm()
     $this->description = '';
     $this->price = '';
     $this->category = '';
+    $this->images = [];
 }
 
     public function render()
@@ -60,7 +67,35 @@ protected function cleanForm()
             'user_id' => Auth::id(),
         ]);
 
+         if (count($this->images) > 0) {
+            foreach($this->images as $image) {
+                $this->article->images()->create(['path' => $image->store('images', 'public')]);
+            }
+
         session()->flash('success', 'articolo creato con successo');
         $this->cleanForm();
     }
+    }
+
+    public function updatedTemporaryImages()
+    {
+        if ($this->validate ([
+            'temporary_images.*' => 'image|max:1024',
+            'temporary_images' => 'max:6',
+        ])) {
+            foreach ($this->temporary_images as $image) {
+                $this->images[] = $image;
+            }
+        }
+
+    }
+
+    public function removeImage($key)
+    {
+        if (in_array($key, array_keys($this->images))) {
+            unset($this->images[$key]);
+        }
+    }
+
+  
 }
