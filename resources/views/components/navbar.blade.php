@@ -10,7 +10,7 @@
           <a class="nav-link" aria-current="page" href="{{ route('homepage') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href=""{{ route('article.index') }}">{{__('ui.allArticles')}}</a>
+          <a class="nav-link" aria-current="page" href=""{{ route('article.index') }}>{{__('ui.allArticles')}}</a>
         </li>
         @auth 
         <li class="nav-item dropdown">

@@ -59,7 +59,7 @@ protected function cleanForm()
     {
         $this->validate();
 
-        Article::create([
+       $this->article= Article::create([
             'title' => $this->title,
             'description' => $this->description,
             'price' => $this->price,
