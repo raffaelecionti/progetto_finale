@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Jobs\ResizeImage;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -69,12 +71,16 @@ protected function cleanForm()
 
          if (count($this->images) > 0) {
             foreach($this->images as $image) {
-                $this->article->images()->create(['path' => $image->store('images', 'public')]);
+               $newFileName = "articles/{$this->article->id}";
+               $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
+               Dispatch(new ResizeImage($newImage->path, 300, 300));
+
             }
 
-        session()->flash('success', 'articolo creato con successo');
-        $this->cleanForm();
+       File::deleteDirectory(storage_path('/app/livewire-tmp'));
     }
+     session()->flash('success', 'articolo creato con successo');
+        $this->cleanForm();
     }
 
     public function updatedTemporaryImages()
