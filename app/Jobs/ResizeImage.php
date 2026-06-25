@@ -9,7 +9,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Spatie\Image\Enums\CropPosition;
 use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Enums\Unit;
-use spatie\Image\Image;
+use Spatie\Image\Image;
 
 class ResizeImage implements ShouldQueue
 {
@@ -36,7 +36,7 @@ class ResizeImage implements ShouldQueue
         $w = $this->w;
         $h = $this->h;
         $srcPath = storage_path().'/app/public/' . $this->path .'/' . $this->fileName;
-         $destPath = storage_path().'/app/public/' . $this->path . "/crop_{w}x{h}" . 
+         $destPath = storage_path().'/app/public/' . $this->path . "/crop{w}x{h}" . 
           $this->fileName;
 
         Image::useImageDriver(ImageDriver::Gd)->load($srcPath)
