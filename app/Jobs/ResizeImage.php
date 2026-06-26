@@ -36,7 +36,7 @@ class ResizeImage implements ShouldQueue
         $w = $this->w;
         $h = $this->h;
         $srcPath = storage_path().'/app/public/' . $this->path .'/' . $this->fileName;
-         $destPath = storage_path().'/app/public/' . $this->path . "/crop{w}x{h}" . 
+         $destPath = storage_path().'/app/public/' . $this->path . "/crop_{$w}x{$h}_" . 
           $this->fileName;
 
         Image::useImageDriver(ImageDriver::Gd)->load($srcPath)
