@@ -42,7 +42,7 @@ class ResizeImage implements ShouldQueue
         Image::useImageDriver(ImageDriver::Gd)->load($srcPath)
         ->crop($w, $h, CropPosition::Center)
         ->watermark(
-            base_path('resources/img/watemark.png'),
+            base_path('resources/img/watermark.png'),
             paddingX: 5,
             paddingY: 5,
             width: 50,
