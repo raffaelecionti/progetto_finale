@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Jobs\GoogleVisionLabelImage;
+use App\Jobs\GoogleVisionSafeSearch;
 use App\Jobs\ResizeImage;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
@@ -74,6 +76,8 @@ protected function cleanForm()
                $newFileName = "articles/{$this->article->id}";
                $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
                Dispatch(new ResizeImage($newImage->path, 300, 300));
+               Dispatch(new GoogleVisionSafeSearch($newImage->id) );
+               Dispatch(new GoogleVisionLabelImage($newImage->id));
 
             }
 
