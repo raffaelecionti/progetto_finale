@@ -11,7 +11,7 @@ use Google\Cloud\Vision\V1\Feature\Type;
 use Google\Cloud\Vision\V1\Image as VisionImage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Spatie\Image\Drivers\ImageDriver;
+use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Enums\AlignPosition;
 use Spatie\Image\Enums\Fit;
 use Spatie\Image\Image as SpatieImage;
@@ -40,7 +40,7 @@ class RemoveFaces implements ShouldQueue
         }
 
         $image = file_get_contents(storage_path('app/public/' . $i->path));
-        $image = file_get_contents($src);
+        $image = file_get_contents('$src');
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credentials.json'));
 
     $googleVisionClient = new ImageAnnotatorClient();
@@ -50,7 +50,7 @@ class RemoveFaces implements ShouldQueue
     
 
     $googleFeature = new Feature();
-    $googleFeature->setType(Type::SAFE_SEARCH_DETECTION);
+    $googleFeature->setType(Type::FACE_DETECTION);
 
     $request = new AnnotateImageRequest();
     $request->setImage($google_image);
@@ -74,7 +74,7 @@ class RemoveFaces implements ShouldQueue
             $w = $bounds[2][0] - $bounds[0][0];
             $h = $bounds[2][1] - $bounds[0][1];
 
-            $image = SpatieImage::useImageDriver(ImageDriver::Gd)->load($src);
+            $image = SpatieImage::useImageDriver(ImageDriver::Gd)->load('$src');
 
             $image->watermark(
                 base_path('resources/img/face.png'),
@@ -85,7 +85,7 @@ class RemoveFaces implements ShouldQueue
                 height: $h,
                 fit: Fit::Stretch
             );
-            $image->save($src);
+            $image->save('$src');
         }
         $googleVisionClient->close();
     }
