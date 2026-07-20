@@ -45,7 +45,7 @@ class GoogleVisionLabelImage implements ShouldQueue
     
 
     $googleFeature = new Feature();
-    $googleFeature->setType(Type::SAFE_SEARCH_DETECTION);
+    $googleFeature->setType(Type::LABEL_DETECTION);
 
     $request = new AnnotateImageRequest();
     $request->setImage($google_image);
