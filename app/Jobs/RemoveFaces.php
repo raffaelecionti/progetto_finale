@@ -39,7 +39,7 @@ class RemoveFaces implements ShouldQueue
             return;
         }
 
-        $image = storage_path('app/public/' . $i->path);
+        $src = storage_path('app/public/' . $i->path);
         $image = file_get_contents($src);
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credentials.json'));
 
