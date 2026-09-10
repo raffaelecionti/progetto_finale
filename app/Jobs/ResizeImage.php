@@ -7,7 +7,7 @@ namespace App\Jobs;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\ImageDriver;
+//use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Enums\Unit;
 use Spatie\Image\Image;
 
@@ -36,10 +36,10 @@ class ResizeImage implements ShouldQueue
         $w = $this->w;
         $h = $this->h;
         $srcPath = storage_path().'/app/public/' . $this->path .'/' . $this->fileName;
-         $destPath = storage_path().'/app/public/' . $this->path . "/crop_{$w}x{$h}_" . 
-          $this->fileName;
+         $destPath = storage_path().'/app/public/' . $this->path . "/crop_{$w}x{$h}_" . $this->fileName;
+          
 
-        Image::useImageDriver(ImageDriver::Gd)->load($srcPath)
+        Image::load($srcPath)
         ->crop($w, $h, CropPosition::Center)
         ->watermark(
             base_path('resources/img/watermark.png'),
